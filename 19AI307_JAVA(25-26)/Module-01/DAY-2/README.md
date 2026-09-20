@@ -1,28 +1,18 @@
-# Ex.No:1(B) CONDITIONAL STATEMENT
+# Ex.No:3(b) POLYMORPHISM
 
-## QUESTION:
-A dragon wakes based on temperature:
+Write a Java program demonstrating method overriding. Create a class Animal with a method sound(). Subclass it as Dog, Cat, Cow, each overriding the sound() method.## QUESTION:
 
-If temperature < 0, it hibernates. If 0 ≤ temp ≤ 20, it snoozes. If 21 ≤ temp ≤ 35, it wakes. If temp > 35, it gets angry.
-
-Write a java program to get the user input for temperature and display appropriate output.
-
-Example Input: -5
-
-Result : Hibernating
 
 ## AIM:
-To write a java program to get the user input for temperature and display appropriate output.
+To write a Java program that demonstrates method overriding using inheritance and polymorphism.
 
 ## ALGORITHM :
-1.Start the program.
-2.Import the necessary package 'java.util'
-3.Create a Scanner object to read input from the user.
-4.Read an integer value and store it in the variable temp.
-5.Check if temp < 0 : If true, print "Hibernating".
-6.Else if temp is between 0 and 20 (inclusive) : Print "Snoozing".
-7.Else if temp is between 21 and 35 (inclusive): Print "Awake".
-8.Else (i.e., temp > 35): Print "Angry".
+1.	Start the program.
+2.	Import the necessary package 'java.util'
+3.	Override the sound() method in each subclass to print specific sounds.
+4.	In main(), use an Animal reference to point to each subclass object.
+5.	Call the sound() method to demonstrate runtime polymorphism.
+
 
 
 
@@ -31,46 +21,73 @@ To write a java program to get the user input for temperature and display approp
 ## PROGRAM:
  ```
 /*
-Program to implement a conditional statement using Java
+Program to implement a Polymorphism using Java
 Developed by: Guru Prasath K M 
 RegisterNumber:  212224230079
 */
 ```
 
 ## SOURCE CODE:
-```
-import java.util.*;
+```java
+import java.util.Scanner;
 
-class prog{
-    public static void main(String[] args)
-    {
-        Scanner sc=new Scanner(System.in);
-        int t=sc.nextInt();
-        if (t<0)
-        {
-            System.out.println("Hibernating");
+class Animal {
+    void sound() {
+        System.out.println("Unknown animal");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+class Cow extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Cow moos");
+    }
+}
+
+public class prog {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextLine()) {
+            String input = sc.nextLine().trim();
+            if (input.isEmpty()) continue;
+
+            Animal a;
+            switch(input.toLowerCase()) {
+                case "dog": a = new Dog(); break;
+                case "cat": a = new Cat(); break;
+                case "cow": a = new Cow(); break;
+                default: a = new Animal();
+            }
+            a.sound();
         }
-        else if(t>=0 && t<=20)
-        {
-            System.out.println("Snoozing");
-        }
-        else if (t>=21 && t<=35)
-        {
-            System.out.println("Awake");
-        }
-        else
-        {
-            System.out.println("Angry");
-        }
+        sc.close();
     }
 }
 ```
 
-## OUTPUT:
 
-<img width="382" height="294" alt="image" src="https://github.com/user-attachments/assets/114a7c5e-3f3b-4860-8ab5-8a70a4b8b656" />
+
+
+
+
+## OUTPUT:
+<img width="1215" height="500" alt="image" src="https://github.com/user-attachments/assets/b8a9e748-162e-4206-8746-d2a053094f1e" />
 
 
 
 ## RESULT:
-Thus, a java program to get the user input for temperature and display appropriate output is executed successfully.
+The program successfully demonstrates method overriding, showing different behaviors of the sound() method for different animal subclasses.
